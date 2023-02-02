@@ -40,7 +40,7 @@ chmod +x script.sh
 ./script.sh
 ```
 
-Then let's run our HTTPs server
+Then let's run our HTTPS server
 
 ```
 go run main.go
@@ -74,3 +74,45 @@ curl --cacert ./certs/ca.pem https://0:8443
 
 This is the way!
 ```
+
+# mTLS setup
+
+So far we have seen how TLS works. Let's look at mTLS. `m` here stands for Mutual. In TLS setup, only the client authenticates the server. By verifying the server certificate with its CA store.
+
+With mTLS, the server will request client to provide and verify the certificate as well.
+
+Let's regenerate the certs
+
+```
+chmod +x script.sh
+./script.sh
+```
+
+And run our updated Go program
+
+```
+go run main.go
+```
+
+If we verify with previous curl command used in [TLS setup](#tls-setup), it not gonna work now
+
+```
+curl --cacert ./certs/ca.pem https://0:8443
+
+curl: (35) error:1401E412:SSL routines:CONNECT_CR_FINISHED:sslv3 alert bad certificate
+```
+
+We will have to supply client certificate for curl to use
+
+```
+curl --http1.1 --cert ./certs/client.pem --key ./certs/client-key.pem --cacert ./certs/ca.pem https://0:8443
+
+This is the way!
+```
+
+# Learning Point
+
+When troublehshoot issue related to TLS, let's ask these questions:
+- Who is the client?
+- Who is the server?
+- Where is the CA certificate? Server certificate? Client certificate?

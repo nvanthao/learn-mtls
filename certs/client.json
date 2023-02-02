@@ -1,0 +1,15 @@
+{
+	"CN": "client",
+	"key": {
+		"algo": "rsa",
+		"size": 2048
+	},
+	"names": [
+		{
+			"C": "AU",
+			"L": "Melbourne",
+			"O": "Gerard Company",
+			"ST": "Victoria"
+		}
+	]
+}
