@@ -110,9 +110,12 @@ curl --http1.1 --cert ./certs/client.pem --key ./certs/client-key.pem --cacert .
 This is the way!
 ```
 
-# Learning Point
+# Learning Points
 
 When troublehshoot issue related to TLS, let's ask these questions:
 - Who is the client?
 - Who is the server?
-- Where is the CA certificate? Server certificate? Client certificate?
+- Where is the CA certificate? 
+- Where is Server certificate? 
+- Is their mTLS (client auth). If it is where is Client certificate?
+- Where is TLS traffic terminated? Any proxy, load balancer in between the services?
