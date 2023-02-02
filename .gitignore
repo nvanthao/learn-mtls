@@ -1,2 +1,2 @@
 .vscode
-certs/*.pem
+/certs/*.pem
