@@ -1,0 +1,24 @@
+services:
+  server:
+    image: consul:1.14.4
+    container_name: consul-server
+    entrypoint:
+      - consul
+      - agent
+      - -config-file
+      - /consul/config/server.hcl
+    volumes:
+      - ./server.hcl:/consul/config/server.hcl
+      - ./certs:/consul/certs
+
+  client:
+    image: consul:1.14.4
+    container_name: consul-client
+    entrypoint:
+      - consul
+      - agent
+      - -config-file
+      - /consul/config/client.hcl
+    volumes:
+      - ./client.hcl:/consul/config/client.hcl
+      - ./certs:/consul/certs
